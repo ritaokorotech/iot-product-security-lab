@@ -254,7 +254,7 @@ Testing was limited to the isolated IoTGoat lab. Tools: Nmap 7.99 and Burp Suite
 | F002: Root password SSH configuration | Configuration and lab reachability confirmed | Medium |
 | F003: Deprecated SSH algorithms | Confirmed by enumeration | Medium |
 
-See [initial security assessment](reports/initial-assessment.md) for evidence, limitations and recommendations.
+See [[initial security assessment](reports/initial-assessment.md]) for evidence, limitations and recommendations.
 
 ## 12. Next session
 
