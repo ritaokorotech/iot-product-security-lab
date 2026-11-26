@@ -19,6 +19,20 @@
 
 ## 3. Firmware Analysis Results
 
+### Methodology
+
+The analysis used a local copy of the IoTGoat x86 VMDK. Binwalk was used to identify embedded data and extract the SquashFS filesystem. Linux command-line inspection of the extracted filesystem identified operating system and component versions and produced a package inventory. A SHA-256 digest was recorded for the analyzed VMDK copy.
+
+### Evidence and integrity
+
+- [Firmware SHA-256 record](../firmware-analysis/firmware-hash.txt)
+- [Software package inventory](../firmware-analysis/software-inventory.txt)
+- [Supporting screenshots](../screenshots/)
+
+The digest identifies the analyzed copy; it does not establish authenticity or equivalence to a trusted upstream release. Comparison against a trusted reference remains pending. Individual screenshot filenames and repository links have not been independently verified.
+
+### Extraction results
+
 Successfully analyzed and extracted the IoTGoat firmware image using Binwalk.
 
 Identified components:
@@ -47,13 +61,15 @@ Successfully identified 122 software packages within the extracted firmware.
 
 ## 5. Initial Security Findings
 
-| Finding | Potential Risk |
-|---|---|
-| Outdated operating system | Unpatched vulnerabilities |
-| Outdated software dependencies | Known vulnerability exposure |
-| Legacy SSH algorithms | Weak cryptographic protection |
-| SSH password authentication enabled | Unauthorized access |
-| Root password authentication permitted | Privileged account compromise |
+| Observation | Evidence status | Potential risk |
+|---|---|---|
+| Legacy operating system and kernel versions | Versions identified; CVE applicability pending | Exposure to unpatched vulnerabilities |
+| Legacy software dependencies | Package versions identified; CVE applicability pending | Vulnerable components may be present |
+| Legacy SSH algorithms | Confirmed by runtime enumeration; F003 | Reduced cryptographic assurance |
+| SSH password authentication enabled | Configuration observed; F002 | Unauthorized access if credentials are compromised |
+| Root password authentication permitted | Configuration observed; F002 | Privileged account compromise |
+
+The SSH observations are cross-references to the [initial security assessment](security-assessment.md), not additional independently confirmed firmware vulnerabilities. Package age alone does not establish exploitability. Vendor patches, build configuration, reachability and affected functionality must be evaluated before assigning CVE-based severity.
 
 ## 6. Security Recommendations
 
@@ -66,6 +82,15 @@ Successfully identified 122 software packages within the extracted firmware.
 - Implement continuous vulnerability monitoring.
 - Verify firmware integrity using SHA-256 hashes.
 
+### Proposed remediation acceptance criteria
+
+| Control | Acceptance criteria (pending) |
+|---|---|
+| Component updates | Updated inventory records supported versions; applicable CVEs are reassessed and residual risks documented. |
+| SSH hardening | F002 and F003 acceptance criteria in the initial assessment pass. |
+| SBOM and monitoring | A structured component inventory records versions and available identifiers; vulnerability matches are reviewed for applicability. |
+| Firmware integrity | A digest or signature is checked against a trusted reference where available; provenance and verification results are documented. |
+
 ## 7. Assessment Status
 
 ### Completed
@@ -76,18 +101,19 @@ Successfully identified 122 software packages within the extracted firmware.
 - Software composition analysis
 - Software package inventory
 - Initial security risk identification
+- SHA-256 digest recorded for the analyzed VMDK copy
 
 ### Future Work
 
 - CVE identification and validation
-- Firmware integrity verification
+- Firmware authenticity and integrity verification against a trusted reference
 - Hardcoded credential assessment
 - Firmware update security assessment
 - Remediation and retesting
 
 ## 8. Conclusion
 
-The assessment successfully identified embedded filesystems, outdated software components and potential security risks within the IoTGoat firmware.
+The assessment successfully identified embedded filesystems, legacy software component versions and potential security risks within the IoTGoat firmware.
 
 This project demonstrates practical skills in embedded product security, static firmware analysis, software composition analysis and vulnerability assessment.
 
