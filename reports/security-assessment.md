@@ -8,6 +8,10 @@
 
 Initial network, web authentication and SSH security testing identified three security concerns. Findings are based on observed screenshots and user-reported test results. No exploitation of SSH or external network exposure was established. Severity ratings are provisional, not CVSS scores.
 
+## Methodology and severity approach
+
+Testing included network service discovery with Nmap, web authentication and session observations with Burp Suite and a browser, and SSH configuration and algorithm review. Medium ratings reflect plausible security impact on administrative access or cryptographic assurance, with exploitation and production exposure unverified. Ratings are qualitative and may change after validation.
+
 ## Test results
 
 | Test | Observation |
@@ -33,6 +37,10 @@ Initial network, web authentication and SSH security testing identified three se
 
 **Recommendation:** Enforce a suitable minimum length, block common passwords and implement rate limiting. Retest rejection of weak passwords.
 
+**Rating rationale:** A predictable password could enable administrative compromise, but attack feasibility and rate limiting have not been established.
+
+**Acceptance criteria (pending):** Weak and common passwords are rejected, compliant passwords are accepted, and repeated failed login attempts are limited according to the documented policy.
+
 ## F002: Insecure SSH configuration
 
 **Severity:** Medium (provisional).
@@ -45,6 +53,10 @@ Initial network, web authentication and SSH security testing identified three se
 
 **Limitation:** Successful SSH password authentication and exposure outside the lab were not verified.
 
+**Rating rationale:** Root access would have substantial impact, but successful password authentication and exposure beyond the lab remain unverified.
+
+**Acceptance criteria (pending):** Root password login is disabled, approved key-based access works, and SSH is reachable only from authorized management networks. Recovery access is verified.
+
 ## F003: Deprecated SSH cryptographic algorithms
 
 **Severity:** Medium (provisional).
@@ -55,14 +67,19 @@ Initial network, web authentication and SSH security testing identified three se
 
 **Recommendation:** Update Dropbear, remove obsolete key exchange and signature algorithms, and support modern host key signatures. Retest with a current SSH client.
 
+**Rating rationale:** Legacy algorithms are available and modern client negotiation failed; no cryptographic compromise was demonstrated.
+
+**Acceptance criteria (pending):** A current SSH client connects using approved algorithms without legacy overrides; enumeration confirms obsolete key exchanges and SHA-1 host signatures are no longer offered.
+
 ## Additional observations
 
 The web response included X-Frame-Options SAMEORIGIN, X-Content-Type-Options nosniff, legacy X-XSS-Protection and Cache-Control no-cache. These are observations, not proof of comprehensive protection. TLS cipher enumeration completion was not verified.
 
 ## Remaining work
 
-- Firmware extraction and filesystem analysis.
-- Software component inventory and vulnerability review.
+Firmware extraction, initial filesystem analysis and the 122-package inventory were subsequently completed on November 26, 2026. See the [firmware assessment](firmware-security-assessment.md).
+
+- CVE identification and applicability validation for inventoried components.
 - Review of embedded secrets and configurations.
 - TLS protocol and cipher verification if not already documented.
 - Server-side logout invalidation and rate limiting verification.
@@ -70,4 +87,6 @@ The web response included X-Frame-Options SAMEORIGIN, X-Content-Type-Options nos
 
 ## Evidence handling
 
-Add sanitized screenshots to an evidence directory. Remove session tokens, passwords and unrelated personal information before publishing.
+Supporting evidence is intended to be maintained in the [screenshots directory](../screenshots/). Relevant evidence includes the web password policy test (F001), SSH settings and service discovery (F002), and SSH negotiation and algorithm enumeration (F003). Individual screenshot filenames and links have not been verified. Remove session tokens, passwords and unrelated personal information before publishing.
+
+**Remediation status:** Recommendations and acceptance criteria are proposed; implementation and retesting remain pending.
