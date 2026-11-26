@@ -256,6 +256,34 @@ Testing was limited to the isolated IoTGoat lab. Tools: Nmap 7.99 and Burp Suite
 
 See reports/security-assessment.md for evidence, limitations and recommendations.
 
-## 12. Next session
+## 12. Current Progress and Next Session
 
-Begin firmware analysis by checking whether Binwalk is installed. Firmware extraction, component inventory, secret review and remediation retesting remain pending.
+### Completed
+- Firmware analysis using Binwalk
+- SquashFS filesystem extraction
+- Firmware SHA-256 hashing
+- Identification of OpenWrt 18.06.2
+- Software inventory of 122 packages
+- Firmware security assessment
+- Threat modeling and STRIDE assessment
+- Security testing documentation
+
+### Next Session
+- CVE identification and validation
+- Hardcoded credentials and secret review
+- Firmware configuration security review
+- Vulnerability risk scoring using CVSS
+- Remediation implementation and retesting
+
+## 13. Project Documentation
+
+- [Security Assessment Reports](./reports/)
+- [Firmware Analysis](./firmware-analysis/)
+- [Threat Modeling](./threat-modeling/)
+- [Security Testing Evidence](./screenshots/)
+
+## 14. Project Status
+
+Ongoing. Additional vulnerability validation,
+remediation and security testing will be
+documented as the project progresses.
