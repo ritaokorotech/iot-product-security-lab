@@ -1,0 +1,5 @@
+threat-modeling/
+├── iotgoat-threat-model.drawio
+├── iotgoat-threat-model.pptx
+├── iotgoat-threat-dragon.json
+└── threat-model.png
