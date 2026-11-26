@@ -4,6 +4,11 @@
 
 This threat model evaluates the security architecture, attack surface, trust boundaries and potential security risks of an embedded IoT device using OWASP IoTGoat.
 
+
+## Threat Model Diagram
+
+![IoTGoat Threat Model](./iotgoat-threat-model.drawio.png) 
+
 ## Methodology
 
 The assessment uses the STRIDE threat modeling framework to identify potential threats and recommend security controls.
