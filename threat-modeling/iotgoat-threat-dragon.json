@@ -1,0 +1,383 @@
+{
+  "summary": {
+    "title": "IoTGoat isolated lab",
+    "owner": "Lab author",
+    "description": "Conceptual STRIDE model; internal flows and threats require validation. Severity ratings provisional.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "IoTGoat data flows",
+        "id": 0,
+        "diagramType": "STRIDE",
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Actor",
+              "id": "74aec4ff-cd00-400b-9ebc-d6cf70356c4f",
+              "size": {
+                "width": 190,
+                "height": 90
+              },
+              "position": {
+                "x": 40,
+                "y": 210
+              },
+              "angle": 0,
+              "z": 1,
+              "threats": [],
+              "hasOpenThreats": false,
+              "outOfScope": false,
+              "attrs": {
+                "text": {
+                  "text": "Kali Linux / administrator\n192.168.100.20"
+                },
+                ".element-shape": {
+                  "class": "element-shape isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "id": "5bc7fbc8-30f5-47f4-8906-b3e0c8f7b870",
+              "size": {
+                "width": 190,
+                "height": 90
+              },
+              "position": {
+                "x": 340,
+                "y": 110
+              },
+              "angle": 0,
+              "z": 1,
+              "threats": [
+                {
+                  "title": "Denial of service",
+                  "type": "Denial of service",
+                  "description": "Service disruption is hypothetical.",
+                  "mitigation": "Apply rate limits and resource controls.",
+                  "status": "Open",
+                  "severity": "Medium"
+                }
+              ],
+              "hasOpenThreats": true,
+              "outOfScope": false,
+              "attrs": {
+                "text": {
+                  "text": "LuCI web interface\nHTTPS :443"
+                },
+                ".element-shape": {
+                  "class": "element-shape isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "id": "ae71fe57-ab14-42fc-a40c-21b115f1a406",
+              "size": {
+                "width": 190,
+                "height": 90
+              },
+              "position": {
+                "x": 340,
+                "y": 310
+              },
+              "angle": 0,
+              "z": 1,
+              "threats": [
+                {
+                  "title": "Spoofing",
+                  "type": "Spoofing",
+                  "description": "Password authentication enabled; credential misuse possible.",
+                  "mitigation": "Use unique credentials and SSH keys.",
+                  "status": "Open",
+                  "severity": "Medium"
+                },
+                {
+                  "title": "Elevation of privilege",
+                  "type": "Elevation of privilege",
+                  "description": "Root password login permitted by configuration; escalation not tested.",
+                  "mitigation": "Restrict root access and update dependencies.",
+                  "status": "Open",
+                  "severity": "Medium"
+                }
+              ],
+              "hasOpenThreats": true,
+              "outOfScope": false,
+              "attrs": {
+                "text": {
+                  "text": "Dropbear SSH\nTCP :22"
+                },
+                ".element-shape": {
+                  "class": "element-shape isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "id": "06c15a4b-1748-4e6e-a9e3-ef1ca1dc82a9",
+              "size": {
+                "width": 190,
+                "height": 90
+              },
+              "position": {
+                "x": 630,
+                "y": 210
+              },
+              "angle": 0,
+              "z": 1,
+              "threats": [
+                {
+                  "title": "Repudiation",
+                  "type": "Repudiation",
+                  "description": "Logging coverage not assessed.",
+                  "mitigation": "Review audit logs and accountability.",
+                  "status": "Open",
+                  "severity": "Medium"
+                }
+              ],
+              "hasOpenThreats": true,
+              "outOfScope": false,
+              "attrs": {
+                "text": {
+                  "text": "OpenWrt 18.06.2\nLinux 4.14.95"
+                },
+                ".element-shape": {
+                  "class": "element-shape isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "id": "ea489d15-7d93-4a8d-9ebe-e69a5e634fde",
+              "size": {
+                "width": 190,
+                "height": 90
+              },
+              "position": {
+                "x": 900,
+                "y": 210
+              },
+              "angle": 0,
+              "z": 1,
+              "threats": [
+                {
+                  "title": "Tampering",
+                  "type": "Tampering",
+                  "description": "Unauthorized configuration or firmware changes are hypothetical.",
+                  "mitigation": "Require signed updates and access controls.",
+                  "status": "Open",
+                  "severity": "Medium"
+                },
+                {
+                  "title": "Information disclosure",
+                  "type": "Information disclosure",
+                  "description": "Sensitive configuration exposure is possible, not verified.",
+                  "mitigation": "Restrict access and protect secrets.",
+                  "status": "Open",
+                  "severity": "Medium"
+                }
+              ],
+              "hasOpenThreats": true,
+              "outOfScope": false,
+              "attrs": {
+                "text": {
+                  "text": "Firmware / SquashFS\n122 packages"
+                },
+                ".element-shape": {
+                  "class": "element-shape isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "id": "f33c99b3-e133-4f02-9d52-0a08b3db6289",
+              "source": {
+                "id": "74aec4ff-cd00-400b-9ebc-d6cf70356c4f"
+              },
+              "target": {
+                "id": "5bc7fbc8-30f5-47f4-8906-b3e0c8f7b870"
+              },
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "HTTPS"
+                    }
+                  }
+                }
+              ],
+              "z": 2,
+              "attrs": {},
+              "threats": [],
+              "description": "HTTPS"
+            },
+            {
+              "type": "tm.Flow",
+              "id": "447d13f0-1d58-4d1b-9d9a-f5f696630100",
+              "source": {
+                "id": "74aec4ff-cd00-400b-9ebc-d6cf70356c4f"
+              },
+              "target": {
+                "id": "ae71fe57-ab14-42fc-a40c-21b115f1a406"
+              },
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "SSH"
+                    }
+                  }
+                }
+              ],
+              "z": 2,
+              "attrs": {},
+              "threats": [],
+              "description": "SSH"
+            },
+            {
+              "type": "tm.Flow",
+              "id": "3f801612-69c3-490c-84c0-e4fa7ba009b6",
+              "source": {
+                "id": "5bc7fbc8-30f5-47f4-8906-b3e0c8f7b870"
+              },
+              "target": {
+                "id": "06c15a4b-1748-4e6e-a9e3-ef1ca1dc82a9"
+              },
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Management"
+                    }
+                  }
+                }
+              ],
+              "z": 2,
+              "attrs": {},
+              "threats": [],
+              "description": "Management"
+            },
+            {
+              "type": "tm.Flow",
+              "id": "e8f38739-f90c-4023-b163-15e6710a3bd8",
+              "source": {
+                "id": "ae71fe57-ab14-42fc-a40c-21b115f1a406"
+              },
+              "target": {
+                "id": "06c15a4b-1748-4e6e-a9e3-ef1ca1dc82a9"
+              },
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Shell access"
+                    }
+                  }
+                }
+              ],
+              "z": 2,
+              "attrs": {},
+              "threats": [],
+              "description": "Shell access"
+            },
+            {
+              "type": "tm.Flow",
+              "id": "37181c5b-1d01-4c76-be7f-811551163b56",
+              "source": {
+                "id": "06c15a4b-1748-4e6e-a9e3-ef1ca1dc82a9"
+              },
+              "target": {
+                "id": "ea489d15-7d93-4a8d-9ebe-e69a5e634fde"
+              },
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Read files"
+                    }
+                  }
+                }
+              ],
+              "z": 2,
+              "attrs": {},
+              "threats": [],
+              "description": "Read files"
+            },
+            {
+              "type": "tm.Boundary",
+              "id": "d7cc73ed-fe87-4659-9608-7cd809bf862d",
+              "source": {
+                "x": 285,
+                "y": 65
+              },
+              "target": {
+                "x": 1125,
+                "y": 65
+              },
+              "vertices": [],
+              "smooth": false,
+              "z": 0,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "id": "9913ac19-13d2-4bd7-b4ed-03a8f0121d6b",
+              "source": {
+                "x": 1125,
+                "y": 65
+              },
+              "target": {
+                "x": 1125,
+                "y": 445
+              },
+              "vertices": [],
+              "smooth": false,
+              "z": 0,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "id": "dda02b1e-8601-4edb-b077-d1ecd9cc3cd2",
+              "source": {
+                "x": 1125,
+                "y": 445
+              },
+              "target": {
+                "x": 285,
+                "y": 445
+              },
+              "vertices": [],
+              "smooth": false,
+              "z": 0,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "id": "74b5da07-2808-406b-835f-3a7cfef11864",
+              "source": {
+                "x": 285,
+                "y": 445
+              },
+              "target": {
+                "x": 285,
+                "y": 65
+              },
+              "vertices": [],
+              "smooth": false,
+              "z": 0,
+              "attrs": {}
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
