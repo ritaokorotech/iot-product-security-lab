@@ -2,17 +2,19 @@
 
 A hands-on product security lab using Kali Linux, OWASP IoTGoat, and Oracle VirtualBox. This project documents how to build an isolated environment for IoT security testing, network reconnaissance, firmware analysis, and vulnerability assessment.
 
-## Project status
+## Project Status
 
-- [x] Configure Kali Linux
-- [x] Configure OWASP IoTGoat
-- [x] Establish an isolated internal network
-- [x] Verify connectivity using ping
+- [x] Isolated IoT security laboratory
 - [x] Network reconnaissance and service discovery
-- [ ] Firmware analysis
-- [x] Initial network and web vulnerability assessment
-- [x] Initial remediation recommendations and security report
-- [ ] Remediation verification and final assessment
+- [x] Web authentication security testing
+- [x] SSH security assessment
+- [x] Firmware extraction and initial static analysis
+- [x] Software component inventory
+- [x] Threat modeling and STRIDE assessment
+- [x] Initial security assessment reports
+- [ ] CVE identification and validation
+- [ ] Hardcoded credentials and secrets review
+- [ ] Remediation verification and retesting
 
 ## Tools and prerequisites
 
